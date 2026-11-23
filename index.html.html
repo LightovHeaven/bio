@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hậu Dòng Tiền Real Estate | BĐS Dòng Tiền Ven Biển Đà Nẵng</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts hỗ trợ tiếng Việt sắc nét -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet" />
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Be Vietnam Pro"', 'sans-serif'],
+            display: ['"Montserrat"', 'sans-serif'],
+          },
+          colors: {
+            obsidian: '#0E0E10',
+            charcoal: '#151519',
+            card: '#1B1B20',
+            gold: {
+              DEFAULT: '#D4AF37',
+              light: '#E8C967',
+              dark: '#AA8824',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #08080A;
+      color: #F4F4F6;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .gold-gradient {
+      background: linear-gradient(135deg, #E8C967 0%, #D4AF37 50%, #B38E25 100%);
+    }
+    .gold-border-glow {
+      box-shadow: 0 0 24px rgba(212, 175, 55, 0.14);
+    }
+    .btn-hover {
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-hover:hover {
+      transform: translateY(-2px);
+    }
+    .btn-hover:active {
+      transform: scale(0.985);
+    }
+    /* Custom scrollbar tinh tế */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #141417;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2E2E36;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex justify-center items-start sm:py-8 sm:px-4">
+
+  <!-- Khung chứa chuẩn di động (tối đa 440px) -->
+  <main class="w-full max-w-[440px] min-h-screen sm:min-h-0 bg-obsidian sm:rounded-[32px] sm:border sm:border-white/10 sm:shadow-[0_24px_70px_rgba(0,0,0,0.85)] relative overflow-hidden pb-8">
+    
+    <!-- Hiệu ứng ánh sáng Gold mờ phía trên -->
+    <div class="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[340px] h-[220px] rounded-full bg-gold/15 blur-[80px]"></div>
+
+    <!-- Thanh công cụ nhỏ trên cùng -->
+    <div class="relative z-10 flex items-center justify-between px-5 pt-5">
+      <button onclick="openEditModal()" class="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-400 hover:text-gold bg-white/5 hover:bg-white/10 border border-white/10 px-3 py-1.5 rounded-full transition">
+        <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5 text-gold"></i>
+        <span>Chỉnh sửa thông tin</span>
+      </button>
+      <button onclick="copyBioLink()" class="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-400 hover:text-gold bg-white/5 hover:bg-white/10 border border-white/10 px-3 py-1.5 rounded-full transition" aria-label="Chia sẻ trang">
+        <i data-lucide="share-2" class="w-3.5 h-3.5 text-gold"></i>
+        <span>Chia sẻ</span>
+      </button>
+    </div>
+
+    <!-- 1. HEADER / PROFILE -->
+    <header class="relative z-10 px-6 pt-5 pb-4 text-center flex flex-col items-center">
+      <!-- Avatar Monogram HDT hình học tối giản -->
+      <div class="relative mb-4">
+        <div class="w-24 h-24 rounded-full p-[2px] gold-gradient gold-border-glow">
+          <div class="w-full h-full rounded-full bg-charcoal flex items-center justify-center relative overflow-hidden">
+            <!-- SVG Monogram HDT độc bản -->
+            <svg viewBox="0 0 120 120" class="w-20 h-20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="60" cy="60" r="52" stroke="#D4AF37" stroke-opacity="0.25" stroke-width="1"/>
+              <polygon points="60,12 102,36 102,84 60,108 18,84 18,36" stroke="#D4AF37" stroke-opacity="0.45" stroke-width="1.2"/>
+              <text x="60" y="67" text-anchor="middle" fill="#E8C967" font-family="Montserrat, sans-serif" font-weight="800" font-size="27" letter-spacing="2">HDT</text>
+              <line x1="38" y1="76" x2="82" y2="76" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <!-- Badge trạng thái -->
+        <div class="mt-2 inline-flex items-center gap-1.5 bg-emerald-950/80 border border-emerald-500/30 px-2.5 py-0.5 rounded-full">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="text-[11px] font-medium text-emerald-300">Sẵn sàng tư vấn 1:1</span>
+        </div>
+      </div>
+
+      <!-- Tên thương hiệu & Chuyên gia -->
+      <h1 id="displayBrandName" class="font-display font-extrabold text-xl tracking-tight text-white">
+        Hậu Dòng Tiền Real Estate
+      </h1>
+      <p id="displayPersonName" class="text-xs font-semibold uppercase tracking-[0.16em] text-gold mt-1">
+        Đặng Công Hậu • Chuyên Gia BĐS Biển Đà Nẵng
+      </p>
+
+      <!-- Mô tả định vị -->
+      <p id="displayBio" class="text-[13.5px] leading-relaxed text-zinc-300 mt-3 max-w-[360px]">
+        Tư vấn đầu tư thực chiến & tối ưu dòng tiền phân khúc <span class="text-white font-semibold">10 – 50 Tỷ</span>: Đất biển, Tòa căn hộ, Khách sạn & Nhà phố khai thác tại Đà Nẵng.
+      </p>
+
+      <!-- 3 Chỉ số nổi bật (Stats Bar) -->
+      <div class="w-full grid grid-cols-3 gap-2 mt-5 bg-charcoal/90 border border-white/10 rounded-2xl p-3">
+        <div class="text-center border-r border-white/10 pr-1">
+          <div class="font-display font-bold text-sm text-gold">10 – 50 Tỷ</div>
+          <div class="text-[11px] text-zinc-400 mt-0.5">Phân khúc cốt lõi</div>
+        </div>
+        <div class="text-center border-r border-white/10 px-1">
+          <div class="font-display font-bold text-sm text-white">Biển Đà Nẵng</div>
+          <div class="text-[11px] text-zinc-400 mt-0.5">Sơn Trà • Ngũ Hành Sơn</div>
+        </div>
+        <div class="text-center pl-1">
+          <div class="font-display font-bold text-sm text-gold">100% Thật</div>
+          <div class="text-[11px] text-zinc-400 mt-0.5">Pháp lý & Dòng tiền</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 2. CÁC NÚT HÀNH ĐỘNG CHÍNH (CTA BUTTONS) -->
+    <section class="relative z-10 px-5 space-y-3 mt-1">
+
+      <!-- Nút 1: Kết nối Zalo trực tiếp (Nổi bật nhất) -->
+      <button onclick="openZaloModal()" class="w-full btn-hover gold-gradient text-obsidian rounded-2xl p-4 flex items-center justify-between shadow-[0_10px_28px_rgba(212,175,55,0.28)] text-left group">
+        <div class="flex items-center gap-3.5">
+          <div class="w-11 h-11 rounded-xl bg-obsidian/15 flex items-center justify-center shrink-0">
+            <i data-lucide="message-circle" class="w-6 h-6 text-obsidian stroke-[2.2]"></i>
+          </div>
+          <div>
+            <div class="font-display font-bold text-[15px] leading-snug">Kết nối Zalo trực tiếp</div>
+            <div class="text-xs font-medium text-obsidian/80 mt-0.5">Tư vấn 1:1 • Gửi sổ & bảng tính dòng tiền</div>
+          </div>
+        </div>
+        <i data-lucide="arrow-up-right" class="w-5 h-5 text-obsidian shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
+      </button>
+
+      <!-- Nút 2: Danh mục Tài sản Dòng tiền đang chào bán -->
+      <button onclick="openModal('portfolioModal')" class="w-full btn-hover bg-card hover:bg-[#222228] border border-gold/35 rounded-2xl p-4 flex items-center justify-between text-left group">
+        <div class="flex items-center gap-3.5">
+          <div class="w-11 h-11 rounded-xl bg-gold/12 border border-gold/25 flex items-center justify-center shrink-0">
+            <i data-lucide="briefcase" class="w-5 h-5 text-gold"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-display font-bold text-[14.5px] text-white">Danh mục Tài sản Dòng tiền</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider bg-gold/20 text-gold px-2 py-0.5 rounded-full">Mới</span>
+            </div>
+            <div class="text-xs text-zinc-400 mt-0.5">Tòa căn hộ, khách sạn & nhà phố chọn lọc</div>
+          </div>
+        </div>
+        <i data-lucide="chevron-right" class="w-5 h-5 text-zinc-400 group-hover:text-gold shrink-0"></i>
+      </button>
+
+      <!-- Nút 3: Công cụ Ước tính Nhanh Dòng tiền BĐS -->
+      <button onclick="openModal('calcModal')" class="w-full btn-hover bg-card hover:bg-[#222228] border border-white/10 hover:border-gold/30 rounded-2xl p-4 flex items-center justify-between text-left group">
+        <div class="flex items-center gap-3.5">
+          <div class="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+            <i data-lucide="calculator" class="w-5 h-5 text-gold"></i>
+          </div>
+          <div>
+            <div class="font-display font-bold text-[14.5px] text-white">Ước tính Nhanh Tỷ suất Dòng tiền</div>
+            <div class="text-xs text-zinc-400 mt-0.5">Tính % lợi nhuận/năm & thời gian hoàn vốn</div>
+          </div>
+        </div>
+        <i data-lucide="chevron-right" class="w-5 h-5 text-zinc-400 group-hover:text-gold shrink-0"></i>
+      </button>
+
+      <!-- Nhãn phân nhóm kênh nội dung -->
+      <div class="pt-3 pb-1 flex items-center gap-3">
+        <div class="h-[1px] flex-1 bg-white/10"></div>
+        <span class="text-[11px] font-semibold uppercase tracking-[0.14em] text-zinc-500">Kênh Phân Tích Thực Chiến</span>
+        <div class="h-[1px] flex-1 bg-white/10"></div>
+      </div>
+
+      <!-- Nút 4: Kênh YouTube Review Thực Tế -->
+      <a id="linkYoutube" href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" class="w-full btn-hover bg-card hover:bg-[#222228] border border-white/10 hover:border-white/20 rounded-2xl p-3.5 flex items-center justify-between text-left group">
+        <div class="flex items-center gap-3.5">
+          <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center shrink-0">
+            <i data-lucide="play-circle" class="w-5 h-5 text-red-400"></i>
+          </div>
+          <div>
+            <div class="font-display font-bold text-sm text-white">YouTube Review Thực Tế</div>
+            <div class="text-xs text-zinc-400 mt-0.5">Khảo sát từng tầng • Phân tích số liệu chi tiết</div>
+          </div>
+        </div>
+        <i data-lucide="external-link" class="w-4 h-4 text-zinc-500 group-hover:text-white shrink-0"></i>
+      </a>
+
+      <!-- Nút 5: TikTok & Facebook Grid 2 cột -->
+      <div class="grid grid-cols-2 gap-3">
+        <a id="linkTiktok" href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" class="btn-hover bg-card hover:bg-[#222228] border border-white/10 hover:border-white/20 rounded-2xl p-3.5 flex flex-col justify-between group">
+          <div class="flex items-center justify-between mb-2.5">
+            <div class="w-9 h-9 rounded-xl bg-white/5 flex items-center justify-center">
+              <i data-lucide="clapperboard" class="w-4 h-4 text-gold"></i>
+            </div>
+            <i data-lucide="arrow-up-right" class="w-4 h-4 text-zinc-500 group-hover:text-white"></i>
+          </div>
+          <div>
+            <div class="font-display font-bold text-sm text-white">TikTok 60s</div>
+            <div class="text-[11px] text-zinc-400 mt-0.5">Góc nhìn đầu tư nhanh</div>
+          </div>
+        </a>
+
+        <a id="linkFacebook" href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="btn-hover bg-card hover:bg-[#222228] border border-white/10 hover:border-white/20 rounded-2xl p-3.5 flex flex-col justify-between group">
+          <div class="flex items-center justify-between mb-2.5">
+            <div class="w-9 h-9 rounded-xl bg-blue-500/10 flex items-center justify-center">
+              <i data-lucide="user-check" class="w-4 h-4 text-blue-400"></i>
+            </div>
+            <i data-lucide="arrow-up-right" class="w-4 h-4 text-zinc-500 group-hover:text-white"></i>
+          </div>
+          <div>
+            <div class="font-display font-bold text-sm text-white">Facebook</div>
+            <div class="text-[11px] text-zinc-400 mt-0.5">Kết nối cá nhân xác thực</div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- 3. THANH CÔNG CỤ TIỆN ÍCH DƯỚI CÙNG (FOOTER) -->
+    <footer class="relative z-10 px-5 mt-6 pt-5 border-t border-white/10">
+      <div class="grid grid-cols-2 gap-2.5">
+        <button onclick="copyBioLink()" class="btn-hover bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl py-2.5 px-3 flex items-center justify-center gap-2 text-xs font-medium text-zinc-200">
+          <i data-lucide="link" class="w-3.5 h-3.5 text-gold"></i>
+          <span>Sao chép Link Bio</span>
+        </button>
+        <button onclick="downloadVCard()" class="btn-hover bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl py-2.5 px-3 flex items-center justify-center gap-2 text-xs font-medium text-zinc-200">
+          <i data-lucide="contact" class="w-3.5 h-3.5 text-gold"></i>
+          <span>Lưu danh bạ (.vcf)</span>
+        </button>
+      </div>
+      <p class="text-center text-[11px] text-zinc-500 mt-4">
+        © 2026 <span id="footerBrand">Hậu Dòng Tiền Real Estate</span> • Đà Nẵng, Việt Nam
+      </p>
+    </footer>
+  </main>
+
+  <!-- ==================== MODAL 1: KẾT NỐI ZALO ==================== -->
+  <div id="zaloModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div class="w-full max-w-[390px] bg-charcoal border border-gold/30 rounded-3xl p-6 relative animate-[fadeIn_0.2s_ease-out]">
+      <button onclick="closeModal('zaloModal')" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-zinc-400 hover:text-white">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-2xl gold-gradient mx-auto flex items-center justify-center mb-3">
+          <i data-lucide="phone-call" class="w-6 h-6 text-obsidian"></i>
+        </div>
+        <h3 class="font-display font-bold text-lg text-white">Kết Nối Zalo Trực Tiếp</h3>
+        <p class="text-xs text-zinc-400 mt-1">Nhận thông tin pháp lý, sổ đỏ & bảng tính dòng tiền chi tiết</p>
+
+        <!-- Khung hiển thị SĐT & Sao chép -->
+        <div class="mt-4 bg-obsidian border border-white/10 rounded-2xl p-3.5 flex items-center justify-between">
+          <div class="text-left">
+            <div class="text-[11px] text-zinc-500">Hotline / Zalo 24/7</div>
+            <div id="displayPhone" class="font-display font-bold text-base text-gold tracking-wider mt-0.5">0905 888 686</div>
+          </div>
+          <button onclick="copyPhone()" class="bg-gold/15 hover:bg-gold/25 border border-gold/40 text-gold text-xs font-semibold px-3 py-2 rounded-xl transition">
+            Sao chép số
+          </button>
+        </div>
+
+        <a id="directZaloHref" href="https://zalo.me/0905888686" target="_blank" rel="noopener noreferrer" class="mt-4 w-full gold-gradient text-obsidian font-display font-bold text-sm py-3.5 rounded-xl flex items-center justify-center gap-2 shadow-lg">
+          <span>Mở ứng dụng Zalo ngay</span>
+          <i data-lucide="external-link" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 2: DANH MỤC TÀI SẢN DÒNG TIỀN ==================== -->
+  <div id="portfolioModal" class="fixed inset-0 z-50 hidden items-end sm:items-center justify-center bg-black/80 backdrop-blur-sm sm:p-4">
+    <div class="w-full max-w-[440px] max-h-[88vh] bg-charcoal border-t sm:border border-gold/30 rounded-t-3xl sm:rounded-3xl flex flex-col overflow-hidden">
+      <div class="p-5 border-b border-white/10 flex items-center justify-between shrink-0">
+        <div>
+          <h3 class="font-display font-bold text-base text-white">Tài Sản Dòng Tiền Chọn Lọc</h3>
+          <p class="text-xs text-zinc-400 mt-0.5">Pháp lý chuẩn chỉnh • Đang khai thác ổn định</p>
+        </div>
+        <button onclick="closeModal('portfolioModal')" class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-zinc-400 hover:text-white">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="p-5 space-y-4 overflow-y-auto">
+        <!-- Tài sản 1 -->
+        <div class="bg-obsidian border border-white/10 rounded-2xl p-4">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-[11px] font-semibold text-gold bg-gold/10 px-2.5 py-0.5 rounded-full">Ngũ Hành Sơn • Cách biển 300m</span>
+            <span class="text-xs font-bold text-emerald-400">~6.1% / năm</span>
+          </div>
+          <h4 class="font-display font-bold text-sm text-white mt-2">Tòa Căn Hộ Dịch Vụ 6 Tầng – 14 Phòng</h4>
+          <div class="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-white/10 text-xs">
+            <div>
+              <div class="text-zinc-500 text-[11px]">Diện tích</div>
+              <div class="font-semibold text-zinc-200 mt-0.5">120 m²</div>
+            </div>
+            <div>
+              <div class="text-zinc-500 text-[11px]">Dòng tiền</div>
+              <div class="font-semibold text-gold mt-0.5">85 Tr/tháng</div>
+            </div>
+            <div>
+              <div class="text-zinc-500 text-[11px]">Giá chào</div>
+              <div class="font-semibold text-white mt-0.5">16.8 Tỷ</div>
+            </div>
+          </div>
+          <button onclick="askPropertyZalo('Tòa Căn Hộ Dịch Vụ 6 Tầng - 16.8 Tỷ')" class="mt-3 w-full bg-white/5 hover:bg-gold hover:text-obsidian border border-gold/30 text-gold font-semibold text-xs py-2.5 rounded-xl transition">
+            Hỏi sổ & bảng tính qua Zalo
+          </button>
+        </div>
+
+        <!-- Tài sản 2 -->
+        <div class="bg-obsidian border border-white/10 rounded-2xl p-4">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-[11px] font-semibold text-gold bg-gold/10 px-2.5 py-0.5 rounded-full">Sơn Trà • Khu phố Tây An Thượng</span>
+            <span class="text-xs font-bold text-emerald-400">~6.4% / năm</span>
+          </div>
+          <h4 class="font-display font-bold text-sm text-white mt-2">Khách Sạn Boutique 7 Tầng – 22 Phòng</h4>
+          <div class="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-white/10 text-xs">
+            <div>
+              <div class="text-zinc-500 text-[11px]">Diện tích</div>
+              <div class="font-semibold text-zinc-200 mt-0.5">150 m²</div>
+            </div>
+            <div>
+              <div class="text-zinc-500 text-[11px]">Dòng tiền</div>
+              <div class="font-semibold text-gold mt-0.5">180 Tr/tháng</div>
+            </div>
+            <div>
+              <div class="text-zinc-500 text-[11px]">Giá chào</div>
+              <div class="font-semibold text-white mt-0.5">33.5 Tỷ</div>
+            </div>
+          </div>
+          <button onclick="askPropertyZalo('Khách Sạn Boutique 7 Tầng An Thượng - 33.5 Tỷ')" class="mt-3 w-full bg-white/5 hover:bg-gold hover:text-obsidian border border-gold/30 text-gold font-semibold text-xs py-2.5 rounded-xl transition">
+            Hỏi sổ & bảng tính qua Zalo
+          </button>
+        </div>
+
+        <!-- Tài sản 3 -->
+        <div class="bg-obsidian border border-white/10 rounded-2xl p-4">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-[11px] font-semibold text-gold bg-gold/10 px-2.5 py-0.5 rounded-full">Trục thông biển Võ Nguyên Giáp</span>
+            <span class="text-xs font-bold text-emerald-400">~5.3% / năm</span>
+          </div>
+          <h4 class="font-display font-bold text-sm text-white mt-2">Nhà Phố Thương Mại Mặt Tiền 10.5m</h4>
+          <div class="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-white/10 text-xs">
+            <div>
+              <div class="text-zinc-500 text-[11px]">Diện tích</div>
+              <div class="font-semibold text-zinc-200 mt-0.5">110 m² (4 tầng)</div>
+            </div>
+            <div>
+              <div class="text-zinc-500 text-[11px]">Dòng tiền</div>
+              <div class="font-semibold text-gold mt-0.5">95 Tr/tháng</div>
+            </div>
+            <div>
+              <div class="text-zinc-500 text-[11px]">Giá chào</div>
+              <div class="font-semibold text-white mt-0.5">21.5 Tỷ</div>
+            </div>
+          </div>
+          <button onclick="askPropertyZalo('Nhà Phố Thương Mại Trục Biển - 21.5 Tỷ')" class="mt-3 w-full bg-white/5 hover:bg-gold hover:text-obsidian border border-gold/30 text-gold font-semibold text-xs py-2.5 rounded-xl transition">
+            Hỏi sổ & bảng tính qua Zalo
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 3: CÔNG CỤ TÍNH DÒNG TIỀN ==================== -->
+  <div id="calcModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div class="w-full max-w-[400px] bg-charcoal border border-gold/30 rounded-3xl p-6 relative">
+      <button onclick="closeModal('calcModal')" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-zinc-400 hover:text-white">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <h3 class="font-display font-bold text-lg text-white">Ước Tính Tỷ Suất Dòng Tiền</h3>
+      <p class="text-xs text-zinc-400 mt-1">Công cụ đánh giá nhanh hiệu quả khai thác BĐS</p>
+
+      <div class="space-y-4 mt-5">
+        <div>
+          <label class="block text-xs font-medium text-zinc-300 mb-1.5">Tổng vốn đầu tư / Giá mua (Tỷ VNĐ)</label>
+          <input id="calcPrice" type="number" step="0.1" value="18" oninput="calculateYield()" class="w-full bg-obsidian border border-white/15 focus:border-gold rounded-xl px-4 py-3 text-sm font-semibold text-white outline-none" />
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-zinc-300 mb-1.5">Doanh thu cho thuê gộp mỗi tháng (Triệu VNĐ)</label>
+          <input id="calcRent" type="number" step="1" value="90" oninput="calculateYield()" class="w-full bg-obsidian border border-white/15 focus:border-gold rounded-xl px-4 py-3 text-sm font-semibold text-white outline-none" />
+        </div>
+
+        <!-- Kết quả hiển thị -->
+        <div class="bg-obsidian border border-gold/30 rounded-2xl p-4 grid grid-cols-2 gap-3">
+          <div>
+            <div class="text-[11px] text-zinc-400">Tỷ suất lợi nhuận/năm</div>
+            <div id="resYield" class="font-display font-extrabold text-xl text-gold mt-1">6.00%</div>
+          </div>
+          <div class="border-l border-white/10 pl-3">
+            <div class="text-[11px] text-zinc-400">Hoàn vốn (chưa tính lãi vốn)</div>
+            <div id="resPayback" class="font-display font-extrabold text-xl text-white mt-1">16.7 năm</div>
+          </div>
+        </div>
+        <p class="text-[11px] text-zinc-500 leading-relaxed">
+          * Lưu ý: Chưa bao gồm tốc độ tăng giá đất ven biển Đà Nẵng (lãi vốn) và chi phí vận hành thực tế.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 4: CHỈNH SỬA NHANH THÔNG TIN ==================== -->
+  <div id="editModal" class="fixed inset-0 z-50 hidden items-end sm:items-center justify-center bg-black/80 backdrop-blur-sm sm:p-4">
+    <div class="w-full max-w-[420px] max-h-[90vh] bg-charcoal border-t sm:border border-gold/30 rounded-t-3xl sm:rounded-3xl flex flex-col overflow-hidden">
+      <div class="p-5 border-b border-white/10 flex items-center justify-between">
+        <div>
+          <h3 class="font-display font-bold text-base text-white">Tùy Chỉnh Thông Tin Cá Nhân</h3>
+          <p class="text-xs text-zinc-400 mt-0.5">Cập nhật thông tin thật của bạn và xuất file HTML</p>
+        </div>
+        <button onclick="closeModal('editModal')" class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-zinc-400 hover:text-white">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="p-5 space-y-3.5 overflow-y-auto text-xs">
+        <div>
+          <label class="block text-zinc-300 font-medium mb-1">Tên thương hiệu</label>
+          <input id="inputBrand" type="text" class="w-full bg-obsidian border border-white/15 focus:border-gold rounded-xl px-3.5 py-2.5 text-white outline-none" />
+        </div>
+        <div>
+          <label class="block text-zinc-300 font-medium mb-1">Họ tên & Chức danh</label>
+          <input id="inputPerson" type="text" class="w-full bg-obsidian border border-white/15 focus:border-gold rounded-xl px-3.5 py-2.5 text-white outline-none" />
+        </div>
+        <div>
+          <label class="block text-zinc-300 font-medium mb-1">Số điện thoại / Zalo (viết liền)</label>
+          <input id="inputPhone" type="text" class="w-full bg-obsidian border border-white/15 focus:border-gold rounded-xl px-3.5 py-2.5 text-white outline-none" />
+        </div>
+        <div>
+          <label class="block text-zinc-300 font-medium mb-1">Link kênh YouTube</label>
+          <input id="inputYoutube" type="url" class="w-full bg-obsidian border border-white/15 focus:border-gold rounded-xl px-3.5 py-2.5 text-white outline-none" />
+        </div>
+        <div>
+          <label class="block text-zinc-300 font-medium mb-1">Link kênh TikTok</label>
+          <input id="inputTiktok" type="url" class="w-full bg-obsidian border border-white/15 focus:border-gold rounded-xl px-3.5 py-2.5 text-white outline-none" />
+        </div>
+        <div>
+          <label class="block text-zinc-300 font-medium mb-1">Link Facebook cá nhân</label>
+          <input id="inputFacebook" type="url" class="w-full bg-obsidian border border-white/15 focus:border-gold rounded-xl px-3.5 py-2.5 text-white outline-none" />
+        </div>
+
+        <div class="pt-2 grid grid-cols-2 gap-2.5">
+          <button onclick="saveProfileChanges()" class="gold-gradient text-obsidian font-display font-bold py-3 rounded-xl">
+            Áp dụng ngay
+          </button>
+          <button onclick="exportUpdatedHTML()" class="bg-white/10 hover:bg-white/15 text-white font-display font-bold py-3 rounded-xl border border-white/15">
+            Tải file HTML mới
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Thông báo nổi -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] pointer-events-none opacity-0 transition-all duration-300 translate-y-3">
+    <div class="bg-charcoal border border-gold/50 text-white text-xs font-medium px-4 py-2.5 rounded-full shadow-2xl flex items-center gap-2">
+      <i data-lucide="check-circle-2" class="w-4 h-4 text-gold"></i>
+      <span id="toastMsg">Đã sao chép vào bộ nhớ tạm</span>
+    </div>
+  </div>
+
+  <script>
+    // Khởi tạo icons
+    lucide.createIcons();
+
+    // State dữ liệu hồ sơ mặc định
+    const profileState = {
+      brandName: "Hậu Dòng Tiền Real Estate",
+      personName: "Đặng Công Hậu • Chuyên Gia BĐS Biển Đà Nẵng",
+      phone: "0905888686",
+      youtube: "https://www.youtube.com",
+      tiktok: "https://www.tiktok.com",
+      facebook: "https://www.facebook.com"
+    };
+
+    function formatPhoneDisplay(raw) {
+      const digits = raw.replace(/\D/g, '');
+      if (digits.length === 10) {
+        return `${digits.slice(0, 4)} ${digits.slice(4, 7)} ${digits.slice(7)}`;
+      }
+      return raw;
+    }
+
+    // Điều khiển Modal
+    function openModal(id) {
+      const el = document.getElementById(id);
+      el.classList.remove('hidden');
+      el.classList.add('flex');
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      el.classList.add('hidden');
+      el.classList.remove('flex');
+    }
+
+    function openZaloModal() {
+      openModal('zaloModal');
+    }
+
+    // Toast thông báo
+    let toastTimer;
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMsg').textContent = message;
+      toast.classList.remove('opacity-0', 'translate-y-3');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-3');
+        toast.classList.remove('opacity-100', 'translate-y-0');
+      }, 2600);
+    }
+
+    // Hàm sao chép an toàn (tương thích mọi môi trường iframe)
+    function copyTextFallback(text, successMsg) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-9999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        showToast(successMsg);
+      } catch (err) {
+        showToast("Không thể sao chép tự động");
+      }
+      document.body.removeChild(textArea);
+    }
+
+    function copyBioLink() {
+      copyTextFallback(window.location.href, "Đã sao chép đường dẫn Link Bio!");
+    }
+
+    function copyPhone() {
+      copyTextFallback(profileState.phone, `Đã sao chép SĐT Zalo: ${formatPhoneDisplay(profileState.phone)}`);
+    }
+
+    function askPropertyZalo(propertyTitle) {
+      closeModal('portfolioModal');
+      copyTextFallback(`Chào Hậu, mình quan tâm tài sản: ${propertyTitle}. Gửi giúp mình thông tin sổ và dòng tiền chi tiết nhé!`, "Đã chép sẵn lời nhắn, đang mở Zalo...");
+      setTimeout(() => {
+        window.open(`https://zalo.me/${profileState.phone.replace(/\D/g, '')}`, '_blank');
+      }, 600);
+    }
+
+    // Công cụ tính tỷ suất dòng tiền
+    function calculateYield() {
+      const priceTy = parseFloat(document.getElementById('calcPrice').value) || 0;
+      const rentTrieu = parseFloat(document.getElementById('calcRent').value) || 0;
+
+      if (priceTy <= 0 || rentTrieu <= 0) {
+        document.getElementById('resYield').textContent = "0.00%";
+        document.getElementById('resPayback').textContent = "—";
+        return;
+      }
+
+      const annualRentTy = (rentTrieu * 12) / 1000;
+      const yieldPercent = (annualRentTy / priceTy) * 100;
+      const paybackYears = priceTy / annualRentTy;
+
+      document.getElementById('resYield').textContent = `${yieldPercent.toFixed(2)}%`;
+      document.getElementById('resPayback').textContent = `${paybackYears.toFixed(1)} năm`;
+    }
+
+    // Tải file danh bạ .vcf
+    function downloadVCard() {
+      const vcard = [
+        "BEGIN:VCARD",
+        "VERSION:3.0",
+        `FN:${profileState.brandName}`,
+        `N:Hậu;Đặng;Công;;`,
+        `ORG:${profileState.brandName}`,
+        "TITLE:Chuyên Gia BĐS Dòng Tiền Ven Biển Đà Nẵng",
+        `TEL;TYPE=CELL,VOICE:${profileState.phone}`,
+        `URL:${profileState.youtube}`,
+        "ADR;TYPE=WORK:;;Ven Biển Sơn Trà - Ngũ Hành Sơn;Đà Nẵng;;550000;Việt Nam",
+        "END:VCARD"
+      ].join("\n");
+
+      const blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Hau_Dong_Tien_BDS_Da_Nang.vcf";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("Đã tải danh bạ (.vcf) về máy!");
+    }
+
+    // Chế độ chỉnh sửa nhanh thông tin
+    function openEditModal() {
+      document.getElementById('inputBrand').value = profileState.brandName;
+      document.getElementById('inputPerson').value = profileState.personName;
+      document.getElementById('inputPhone').value = profileState.phone;
+      document.getElementById('inputYoutube').value = profileState.youtube;
+      document.getElementById('inputTiktok').value = profileState.tiktok;
+      document.getElementById('inputFacebook').value = profileState.facebook;
+      openModal('editModal');
+    }
+
+    function saveProfileChanges() {
+      profileState.brandName = document.getElementById('inputBrand').value.trim() || profileState.brandName;
+      profileState.personName = document.getElementById('inputPerson').value.trim() || profileState.personName;
+      profileState.phone = document.getElementById('inputPhone').value.trim() || profileState.phone;
+      profileState.youtube = document.getElementById('inputYoutube').value.trim() || profileState.youtube;
+      profileState.tiktok = document.getElementById('inputTiktok').value.trim() || profileState.tiktok;
+      profileState.facebook = document.getElementById('inputFacebook').value.trim() || profileState.facebook;
+
+      // Cập nhật lên giao diện
+      document.getElementById('displayBrandName').textContent = profileState.brandName;
+      document.getElementById('footerBrand').textContent = profileState.brandName;
+      document.getElementById('displayPersonName').textContent = profileState.personName;
+      document.getElementById('displayPhone').textContent = formatPhoneDisplay(profileState.phone);
+      document.getElementById('directZaloHref').href = `https://zalo.me/${profileState.phone.replace(/\D/g, '')}`;
+      document.getElementById('linkYoutube').href = profileState.youtube;
+      document.getElementById('linkTiktok').href = profileState.tiktok;
+      document.getElementById('linkFacebook').href = profileState.facebook;
+
+      closeModal('editModal');
+      showToast("Đã cập nhật thông tin trên trang!");
+    }
+
+    // Xuất file HTML đã cập nhật thông tin để đưa lên host miễn phí
+    function exportUpdatedHTML() {
+      saveProfileChanges();
+      const docClone = document.documentElement.cloneNode(true);
+      // Đảm bảo các modal đóng trong bản xuất ra
+      ['zaloModal', 'portfolioModal', 'calcModal', 'editModal'].forEach(id => {
+        const m = docClone.querySelector(`#${id}`);
+        if (m) {
+          m.classList.add('hidden');
+          m.classList.remove('flex');
+        }
+      });
+      const htmlContent = "<!DOCTYPE html>\n" + docClone.outerHTML;
+      const blob = new Blob([htmlContent], { type: "text/html;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "index.html";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("Đã xuất file index.html hoàn chỉnh!");
+    }
+
+    // Đóng modal khi bấm ra vùng tối bên ngoài
+    ['zaloModal', 'portfolioModal', 'calcModal', 'editModal'].forEach(id => {
+      document.getElementById(id).addEventListener('click', (e) => {
+        if (e.target.id === id) closeModal(id);
+      });
+    });
+  </script>
+</body>
+</html>
